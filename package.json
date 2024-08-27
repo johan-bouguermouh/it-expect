@@ -1,0 +1,15 @@
+{
+  "name": "it-expect",
+  "version": "1.0.0",
+  "description": "This application is intended as a school exercise to increase knowledge of the covergae test.",
+  "scripts": {
+    "build:back": "docker-compose build nestjs-app",
+    "build:front": "docker-compose build nextjs-app",
+    "start:db": "docker-compose up mysql-db",
+    "start:back": "docker-compose up nestjs-app --renew-anon-volumes",
+    "start:front": "docker-compose up nextjs-app --renew-anon-volumes",
+    "clean": "docker-compose down -v"
+  },
+  "author": "Johan Bouguermouh",
+  "license": "ISC"
+}
