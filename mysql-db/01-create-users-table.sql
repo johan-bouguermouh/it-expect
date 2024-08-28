@@ -1,5 +1,5 @@
 USE IT_EXPECT;
-CREATE TABLE users(
+CREATE TABLE user(
    id INT AUTO_INCREMENT,
    firstname VARCHAR(50) NOT NULL,
     lastname VARCHAR(50) NOT NULL,
