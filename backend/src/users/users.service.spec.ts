@@ -21,7 +21,7 @@ describe('UsersService', () => {
             find: jest.fn(),
             findOne: jest.fn(),
             update: jest.fn(),
-            remove: jest.fn(),
+            delete: jest.fn(),
           },
         },
       ],
@@ -174,6 +174,26 @@ describe('UsersService', () => {
 
       /** ASSERT **/
       expect(await callUpdateMethodService()).toEqual(updateResultMock);
+    });
+  });
+
+  describe('Methode remove :', () => {
+    it('Should return an object', async () => {
+      /** ARRANGE */
+      const removeResultMock = {
+        raw: [],
+        affected: 1,
+      };
+
+      jest.spyOn(userRepository, 'delete').mockResolvedValue(removeResultMock);
+
+      /** ACT **/
+      const callRemoveMethodService = async () => {
+        return await service.remove(1);
+      };
+
+      /** ASSERT **/
+      expect(await callRemoveMethodService()).toEqual(removeResultMock);
     });
   });
 });
