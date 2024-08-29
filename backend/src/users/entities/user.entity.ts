@@ -1,6 +1,6 @@
 import { HttpException } from '@nestjs/common';
-import * as argon from 'argon2';
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import * as argon2 from 'argon2';
 
 @Entity()
 export class User {
@@ -21,7 +21,7 @@ export class User {
 
   async hashPassword(): Promise<void> {
     if (this.password) {
-      this.password = await argon.hash(this.password);
+      this.password = await argon2.hash(this.password);
     } else {
       throw new HttpException('Password is required', 400);
     }
