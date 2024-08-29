@@ -4,6 +4,12 @@ import { getRepositoryToken } from '@nestjs/typeorm';
 import { User } from './entities/user.entity';
 import { Repository, UpdateResult } from 'typeorm';
 import { UpdateUserDto } from './dto/update-user.dto';
+import {
+  createUserMock,
+  getAllUsersMock,
+  getOneUserMock,
+  updateUserMock,
+} from './users.mocks';
 
 describe('UsersService', () => {
   let service: UsersService;
@@ -17,7 +23,7 @@ describe('UsersService', () => {
         {
           provide: USER_REPOSITORY_TOKEN,
           useValue: {
-            save: jest.fn((x) => new User(x)),
+            save: jest.fn(),
             find: jest.fn(),
             findOne: jest.fn(),
             update: jest.fn(),
@@ -41,12 +47,6 @@ describe('UsersService', () => {
 
   describe('Methode create :', () => {
     /** ARRANGE */
-    const createUserMock: User = new User({
-      firstName: 'Johan',
-      lastName: 'Bouguermouh',
-      email: 'johan.bouguermouh@laplateforme.io',
-      password: 'Test_1234!',
-    });
 
     it('Password should be hashed', async () => {
       /** ARRANGE */
@@ -61,7 +61,7 @@ describe('UsersService', () => {
       expect(hashPassword).toHaveBeenCalled();
     });
 
-    it('Should retrun User by create', async () => {
+    it('Should retn User by create', async () => {
       /** ARRANGE */
       jest.spyOn(userRepository, 'save').mockResolvedValue(createUserMock);
 
@@ -78,21 +78,8 @@ describe('UsersService', () => {
   describe('Methode findAll :', () => {
     it('Should return an array of users', async () => {
       /** ARRANGE */
-      const getAllUsersMock = [
-        new User({
-          firstName: 'jhon',
-          lastName: 'doe',
-          email: 'jhondoe@mail.fr',
-          password: '*BA836B173CB7FD26F1683B52974AF4310BCAFC00',
-        }),
-        new User({
-          firstName: 'jane',
-          lastName: 'doe',
-          email: 'janedoe@mail.fr',
-          password: '*BA836B173CB7FD26F1683B52974AF4310BCAFC00',
-        }),
-      ];
-      jest.spyOn(userRepository, 'find').mockResolvedValue(getAllUsersMock);
+
+      jest.spyOn(userRepository, 'find').mockResolvedValue(getAllUsersMock());
 
       /** ACT **/
       const callFindAllMethodService = async () => {
@@ -100,7 +87,7 @@ describe('UsersService', () => {
       };
 
       /** ASSERT **/
-      expect(await callFindAllMethodService()).toEqual(getAllUsersMock);
+      expect(await callFindAllMethodService()).toEqual(getAllUsersMock());
     });
 
     it('Should return an empty array', async () => {
@@ -120,14 +107,8 @@ describe('UsersService', () => {
   describe('Methode findOne :', () => {
     it('Should return a user', async () => {
       /** ARRANGE */
-      const getOneUserMock = new User({
-        firstName: 'jhon',
-        lastName: 'doe',
-        email: 'jhondoe@mail.fr',
-        password: '*BA836B173CB7FD26F1683B52974AF4310BCAFC00',
-      });
 
-      jest.spyOn(userRepository, 'findOne').mockResolvedValue(getOneUserMock);
+      jest.spyOn(userRepository, 'findOne').mockResolvedValue(getOneUserMock());
 
       /** ACT **/
       const callFindOneMethodService = async () => {
@@ -135,7 +116,7 @@ describe('UsersService', () => {
       };
 
       /** ASSERT **/
-      expect(await callFindOneMethodService()).toEqual(getOneUserMock);
+      expect(await callFindOneMethodService()).toEqual(getOneUserMock());
     });
 
     it('Should return null', async () => {
@@ -155,9 +136,6 @@ describe('UsersService', () => {
   describe('Methode update :', () => {
     it('Should return an object', async () => {
       /** ARRANGE */
-      const updateUserMock = new UpdateUserDto({
-        email: 'jhondoeNew@mail.fr',
-      });
 
       const updateResultMock: UpdateResult = {
         generatedMaps: [],
@@ -169,7 +147,7 @@ describe('UsersService', () => {
 
       /** ACT **/
       const callUpdateMethodService = async () => {
-        return await service.update(1, updateUserMock);
+        return await service.update(1, updateUserMock());
       };
 
       /** ASSERT **/
