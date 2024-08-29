@@ -12,7 +12,8 @@ export class UsersService {
     private userRepository: Repository<User>,
   ) {}
 
-  create(createUserDto: User) {
+  async create(createUserDto: User) {
+    await createUserDto.hashPassword();
     return this.userRepository.save(createUserDto);
   }
 
