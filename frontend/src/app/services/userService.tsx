@@ -2,7 +2,7 @@ import { axiosInstance, ResponseTypeORM } from "./axios.config";
 
 const prefixEntity = "users";
 
-interface User {
+export interface User {
   id?: number;
   firstName: string;
   lastName: string;

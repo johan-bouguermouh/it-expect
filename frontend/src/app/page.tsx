@@ -3,17 +3,17 @@
 import Head from "next/head";
 import Image from "next/image";
 import { Inter } from "next/font/google";
-import styles from "../styles/globals.module.css";
+import styles from "./styles/globals.module.css";
 import {
   dehydrate,
   HydrationBoundary,
   QueryClient,
   QueryClientProvider,
-  useQuery,
 } from "@tanstack/react-query";
 import { useState } from "react";
 import Users from "./pages/users/page";
-import { getUsers } from "@/services/userService";
+import { getUsers } from "@/app/services/userService";
+import UsersTable from "@/app/Components/UsersTable/UsersTable.componenent";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -60,7 +60,7 @@ export default function Home() {
           </div>
 
           <div className={styles.center}>
-            <Users />
+            <UsersTable />
           </div>
 
           <div className={styles.grid}>

@@ -1,5 +1,5 @@
 // pages/posts.jsx
-import { getUsers } from "@/services/userService";
+import { getUsers } from "@/app/services/userService";
 import { dehydrate, QueryClient, useQuery } from "@tanstack/react-query";
 
 // Création de l'interfce utilisateur
