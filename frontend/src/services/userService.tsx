@@ -10,14 +10,14 @@ export interface User {
   password?: string;
 }
 
-interface patchUser {
+export interface patchUser {
   firstName?: string;
   lastName?: string;
   email?: string;
   password?: string;
 }
 
-interface PostUser {
+export interface PostUser {
   firstName: string;
   lastName: string;
   email: string;

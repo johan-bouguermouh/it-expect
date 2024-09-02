@@ -12,18 +12,18 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
-    "baseUrl": "src",
+    "baseUrl": ".", // Assurez-vous que cela pointe vers le bon dossier
     "plugins": [
       {
         "name": "next"
       }
     ],
     "paths": {
-      "@/*": ["./*"],
+      "@/*": ["src/*"],
       "@components/*": ["components/*"],
       "@modules/*": ["../node_modules/@modules/*"],
-      "@pages/*": ["./pages/*"],
-      "@styles/*": ["./styles/*"]
+      "@pages/*": ["pages/*"],
+      "@styles/*": ["styles/*"]
     }
   },
   "include": [

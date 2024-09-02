@@ -1,10 +1,16 @@
-import { getUsers, User } from "@/app/services/userService";
 import { useQuery } from "@tanstack/react-query";
 import React, { useEffect, useState } from "react";
 import styles from "./UserTable.module.css";
+import { getUsers, User } from "@/services/userService";
 
 export default function UsersTable() {
   const [isClient, setIsClient] = useState(false);
+
+  //Au click on redirege vers la page de l'utilisateur /users/[id]
+  const handleClick = (id: number | undefined) => {
+    if (!id) return;
+    // window.location.href = `/users/${id}`;
+  };
 
   useEffect(() => {
     setIsClient(true);
@@ -33,7 +39,7 @@ export default function UsersTable() {
         </thead>
         <tbody>
           {users?.map((user: User) => (
-            <tr key={user.id}>
+            <tr key={user.id} onClick={() => handleClick(user.id)}>
               <td>{user.firstName}</td>
               <td>{user.lastName}</td>
               <td>{user.email}</td>
