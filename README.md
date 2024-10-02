@@ -1,5 +1,43 @@
 # it-expect
 
+## Lancement du projet
+
+Le projet est containerisé, vous pouvez vous rendre à la racine du projet et le lancer avec les variable d'environnement d'exemple :
+
+```shell
+docker-compose --env-file .env.exemple up --build
+```
+
+### Lancer les tests back
+
+- Exectuer les test directement dans le container
+
+```shell
+docker exec -it backend /bin/sh
+```
+
+- Lancer directement dans le terminal
+
+```shell
+cd backend
+npm run test:watch a
+```
+
+### Lancer les tests front
+
+- Exectuer les test directement dans le container
+
+```shell
+docker exec -it frontend /bin/sh
+```
+
+- Lancer directement dans le terminal
+
+```shell
+cd frontend
+npx playwright test
+```
+
 ## La stratégie de recette
 
 **documentation**: https://www.conseilorga.com/tests-recettes-projets-systeme-dinformations-etape-delicate/
