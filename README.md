@@ -16,7 +16,7 @@ docker-compose --env-file .env.exemple up --build
 docker exec -it backend /bin/sh
 ```
 
-- Lancer directement dans le terminal
+- Ou Lancer directement dans le terminal
 
 ```shell
 cd backend
@@ -31,7 +31,7 @@ npm run test:watch a
 docker exec -it frontend /bin/sh
 ```
 
-- Lancer directement dans le terminal
+- Ou Lancer directement dans le terminal
 
 ```shell
 cd frontend
