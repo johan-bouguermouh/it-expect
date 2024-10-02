@@ -3,12 +3,15 @@
   "version": "1.0.0",
   "description": "This application is intended as a school exercise to increase knowledge of the covergae test.",
   "scripts": {
-    "build:back": "docker-compose build nestjs-app",
-    "build:front": "docker-compose build nextjs-app",
+    "build:back": "docker-compose build backend",
+    "build:front": "docker-compose build frontend",
     "start:db": "docker-compose up mysql-db",
-    "start:back": "docker-compose up nestjs-app --renew-anon-volumes",
-    "start:front": "docker-compose up nextjs-app --renew-anon-volumes",
-    "clean": "docker-compose down -v"
+    "start:back": "docker-compose up backend --renew-anon-volumes",
+    "start:front": "docker-compose up frontend --renew-anon-volumes",
+    "clean": "docker-compose down -v",
+    "test:front": "docker-compose run --rm frontend npx playwright test",
+    "test:back": "docker-compose run --rm backend npm run test",
+    "test:full": "cd frontend && npx playwright test && cd .. && cd backend && npm run test"
   },
   "author": "Johan Bouguermouh",
   "license": "ISC"
